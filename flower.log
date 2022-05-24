@@ -1,0 +1,34 @@
+INFO flower 2022-05-24 06:09:54,129 | app.py:109 | Flower server running (1 rounds)
+SSL is disabled
+INFO flower 2022-05-24 06:09:54,129 | server.py:134 | Initializing global parameters
+INFO flower 2022-05-24 06:09:55,824 | server.py:340 | Using initial parameters provided by strategy
+INFO flower 2022-05-24 06:09:55,825 | server.py:137 | Evaluating initial parameters
+INFO flower 2022-05-24 06:10:01,412 | server.py:140 | initial parameters (loss, other metrics): 686.1875188350677, {'accuracy': 0.2089}
+INFO flower 2022-05-24 06:10:01,412 | server.py:150 | FL starting
+INFO flower 2022-05-24 06:10:05,971 | connection.py:103 | Opened insecure gRPC connection (no certificates were passed)
+DEBUG flower 2022-05-24 06:10:05,974 | connection.py:39 | ChannelConnectivity.IDLE
+DEBUG flower 2022-05-24 06:10:05,974 | connection.py:39 | ChannelConnectivity.CONNECTING
+DEBUG flower 2022-05-24 06:10:05,977 | connection.py:39 | ChannelConnectivity.READY
+INFO flower 2022-05-24 06:10:06,024 | connection.py:103 | Opened insecure gRPC connection (no certificates were passed)
+DEBUG flower 2022-05-24 06:10:06,025 | connection.py:39 | ChannelConnectivity.IDLE
+DEBUG flower 2022-05-24 06:10:06,025 | connection.py:39 | ChannelConnectivity.READY
+INFO flower 2022-05-24 06:10:06,164 | connection.py:103 | Opened insecure gRPC connection (no certificates were passed)
+DEBUG flower 2022-05-24 06:10:06,164 | connection.py:39 | ChannelConnectivity.IDLE
+DEBUG flower 2022-05-24 06:10:06,165 | connection.py:39 | ChannelConnectivity.CONNECTING
+DEBUG flower 2022-05-24 06:10:06,165 | connection.py:39 | ChannelConnectivity.READY
+DEBUG flower 2022-05-24 06:10:06,171 | server.py:271 | fit_round: strategy sampled 3 clients (out of 3)
+DEBUG flower 2022-05-24 06:10:21,654 | server.py:283 | fit_round received 3 results and 0 failures
+INFO flower 2022-05-24 06:10:24,301 | server.py:303 | strip=QmVzm7AnGRXfUH8UeE3Fff5qTFAPfx7CcL4VinPCUjEbNx
+INFO flower 2022-05-24 06:10:26,472 | server.py:165 | fit progress: (1, 554.0055451393127, {'accuracy': 0.3576}, 25.06001469504554)
+INFO flower 2022-05-24 06:10:26,472 | server.py:216 | evaluate_round: no clients selected, cancel
+INFO flower 2022-05-24 06:10:26,472 | server.py:189 | FL finished in 25.06030075903982
+INFO flower 2022-05-24 06:10:26,473 | app.py:149 | app_fit: losses_distributed []
+INFO flower 2022-05-24 06:10:26,473 | app.py:150 | app_fit: metrics_distributed {}
+INFO flower 2022-05-24 06:10:26,473 | app.py:151 | app_fit: losses_centralized [(0, 686.1875188350677), (1, 554.0055451393127)]
+INFO flower 2022-05-24 06:10:26,473 | app.py:152 | app_fit: metrics_centralized {'accuracy': [(0, 0.2089), (1, 0.3576)]}
+DEBUG flower 2022-05-24 06:10:26,475 | connection.py:122 | gRPC channel closed
+DEBUG flower 2022-05-24 06:10:26,475 | connection.py:122 | gRPC channel closed
+INFO flower 2022-05-24 06:10:26,476 | app.py:101 | Disconnect and shut down
+DEBUG flower 2022-05-24 06:10:26,476 | connection.py:122 | gRPC channel closed
+INFO flower 2022-05-24 06:10:26,476 | app.py:101 | Disconnect and shut down
+INFO flower 2022-05-24 06:10:26,476 | app.py:101 | Disconnect and shut down

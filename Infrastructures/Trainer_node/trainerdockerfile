@@ -1,0 +1,38 @@
+# This dockerfile helps you to build the docker image we use.
+# or you can just download the bcflimage.tar and load into your docker images as mentioned in README.md
+
+FROM pytorch/pytorch
+MAINTAINER jack
+
+RUN apt-get update && apt update
+RUN apt install wget -y
+
+# go-ipfs install file
+RUN cd / && wget https://dist.ipfs.io/go-ipfs/v0.12.2/go-ipfs_v0.12.2_linux-amd64.tar.gz && tar -zxvf go-ipfs_v0.12.2_linux-amd64.tar.gz
+RUN cd /go-ipfs && bash install.sh
+ENV GOPATH=$HOME/golang
+
+# install tzdata with noninteractive
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get install -y tzdata
+RUN ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime
+RUN dpkg-reconfigure -f noninteractive tzdata
+
+# install ipfs
+RUN apt-get install golang -y
+RUN apt-get install git -y
+
+# install ethereum
+RUN apt install -y software-properties-common
+RUN add-apt-repository -y ppa:ethereum/ethereum && apt-get install -y ethereum-unstable
+
+# install python packages
+RUN apt-get install --reinstall gcc g++
+RUN pip install -U setuptools
+RUN pip install -U wheel
+RUN pip install python-dev-tools
+RUN pip install web3
+RUN pip install py-solc-x
+RUN pip install grpcio
+RUN pip install grpcio-tools
+RUN pip install jsons
