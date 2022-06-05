@@ -1,6 +1,6 @@
 echo -e "------ Build Containers for Main IPFS ------\n\n"
-echo -e "reading ipfs_mainDockers.conf...\n"
-./IPFS_runMainDockers.sh
+echo -e "reading IPFS_InfraDockers.conf...\n"
+./IPFS_runInfraDockers.sh
 echo -e "------ Init IPFS ------\n\n"
 ./IPFS_initIPFS.sh
 echo -e "------ Configure IPFS Peers to ipfs_mainPeers.conf ------\n\n"

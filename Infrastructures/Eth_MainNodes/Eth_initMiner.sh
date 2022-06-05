@@ -1,18 +1,19 @@
 #!/bin/bash
 read CONFPATH < configPath.txt
-CONFIG="Eth_docker.conf"
-NETGENESIS="mynet.json"
-NETGENESISPATH="${CONFPATH}/${NETGENESIS}"
-NETGENESISPATHDOCKER="/root/${NETGENESIS}"
+CONFIG="Eth_InfraDockers.conf"
 while read line; do input=($line); done < "${CONFPATH}/${CONFIG}"
 PASSWD=${input[1]}
 
 INPUTS=""
 while read line;
-do input=($line); INPUTS="${INPUTS} ${input[1]}";break;done < "${CONFPATH}/${CONFIG}"
+do input=($line); INPUTS="${INPUTS} ${input[1]}";done < "${CONFPATH}/${CONFIG}"
 INPUTS=($INPUTS)
+NETGENESIS=${INPUTS[7]}
+NETGENESISPATH="${CONFPATH}/${NETGENESIS}"
+NETGENESISPATHDOCKER="/root/${NETGENESIS}"
+
 CONTAINERNAME=${INPUTS[0]}
-sudo docker cp "${CONFPATH}/${CONFIG}" $CONTAINERNAME:/root/Eth_docker.conf
+sudo docker cp "${CONFPATH}/${CONFIG}" "${CONTAINERNAME}:/root/${CONFIG}"
 sudo docker cp $NETGENESISPATH $CONTAINERNAME:$NETGENESISPATHDOCKER
 PASSWDCMD="bash -c 'echo \"${PASSWD}\" > /root/mypasswd.txt'"
 bash -c "sudo docker exec $CONTAINERNAME $PASSWDCMD"

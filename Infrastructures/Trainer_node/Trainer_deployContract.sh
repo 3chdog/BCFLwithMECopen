@@ -7,6 +7,4 @@ do input=($line); INPUTS="${INPUTS} ${input[1]}";done < "${CONFPATH}/${CONFIG}"
 INPUTS=($INPUTS)
 CONTAINERNAME=${INPUTS[4]}
 
-sudo docker exec -it $CONTAINERNAME bash
-#sudo docker exec $CONTAINERNAME bash -c '/root/BCFLwithMEC/listener_up.sh'
-#sudo docker exec $CONTAINERNAME bash -c '/root/BCFLwithMEC/host.sh'
+sudo docker exec $CONTAINERNAME /root/BCFLwithMECopen/flower/deploy_Contract.sh

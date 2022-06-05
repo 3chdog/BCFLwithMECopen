@@ -1,11 +1,12 @@
 from web3 import Web3
 import argparse
 import json
-import util
+
+from . import utils
 
 
 def send_transaction(config, tx, miner=None):
-    w3 = util.getProvider(config, miner)
+    w3 = utils.getProvider(config, miner)
     w3.eth.default_account = w3.eth.accounts[0]
     print("Account Balance:", w3.eth.get_balance(w3.eth.default_account))
     tx_sent = w3.eth.send_transaction(tx)
@@ -24,7 +25,7 @@ def argparse_for_main():
 
 if __name__ == "__main__":
     args = argparse_for_main()
-    w3 = util.getProvider(args.config, args.miner)
+    w3 = utils.getProvider(args.config, args.miner)
 
     if args.tx==None:
         # define tx

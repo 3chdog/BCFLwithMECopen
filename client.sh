@@ -2,8 +2,8 @@
 
 set -e
 
-SERVER_ADDRESS="[::]:12347"
-NUM_CLIENTS=3
+SERVER_ADDRESS=$1
+NUM_CLIENTS=2
 
 echo "Starting $NUM_CLIENTS clients."
 for ((i = 0; i < $NUM_CLIENTS; i++))

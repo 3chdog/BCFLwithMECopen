@@ -1,6 +1,6 @@
 #!/bin/bash
 read CONFPATH < configPath.txt
-CONFIG="Eth_docker.conf"
+CONFIG="Eth_InfraDockers.conf"
 INPUTS=""
 while read line;
 do input=($line); INPUTS="${INPUTS} ${input[1]}";break;done < "${CONFPATH}/${CONFIG}"
@@ -14,11 +14,11 @@ sudo docker exec $CONTAINERNAME bootnode --genkey=/root/boot.key
 sudo docker exec $CONTAINERNAME /bin/sh -c 'bootnode --verbosity 9 --nodekey=/root/boot.key 2>>/root/bootnode.log&'
 
 sleep 2
-
+# Eth_InfraDockers.conf (remember to edit the name)
 # miner1 (just change the number of MINERNUM=1)
 sudo docker exec $CONTAINERNAME bash -c 'MINERNUM=1 && \
 MINER="miner${MINERNUM}" && INPUTS="" && \
-while read line; do input=($line); INPUTS="${INPUTS} ${input[1]}";done < /root/Eth_docker.conf && \
+while read line; do input=($line); INPUTS="${INPUTS} ${input[1]}";done < /root/Eth_InfraDockers.conf && \
 INPUTS=($INPUTS)
 \
 echo "starting [$MINER]..." && \
@@ -47,7 +47,7 @@ geth --mine --miner.threads=2 \
 # miner2
 sudo docker exec $CONTAINERNAME bash -c 'MINERNUM=2 && \
 MINER="miner${MINERNUM}" && INPUTS="" && \
-while read line; do input=($line); INPUTS="${INPUTS} ${input[1]}";done < /root/Eth_docker.conf && \
+while read line; do input=($line); INPUTS="${INPUTS} ${input[1]}";done < /root/Eth_InfraDockers.conf && \
 INPUTS=($INPUTS)
 \
 echo "starting [$MINER]..." && \
@@ -76,7 +76,7 @@ geth --mine --miner.threads=2 \
 # miner3
 sudo docker exec $CONTAINERNAME bash -c 'MINERNUM=3 && \
 MINER="miner${MINERNUM}" && INPUTS="" && \
-while read line; do input=($line); INPUTS="${INPUTS} ${input[1]}";done < /root/Eth_docker.conf && \
+while read line; do input=($line); INPUTS="${INPUTS} ${input[1]}";done < /root/Eth_InfraDockers.conf && \
 INPUTS=($INPUTS)
 \
 echo "starting [$MINER]..." && \

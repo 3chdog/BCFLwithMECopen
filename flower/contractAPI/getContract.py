@@ -1,10 +1,8 @@
 from web3 import Web3
 import argparse
 import json
-try:
-    import util
-except:
-    from . import util
+
+from . import utils
 #python3 getContract.py --config <miner_address.json> --contrjson <contrjson.json> --contrtxjson <contrtxjson.json>
 
 # This is automation for connection of deployContract.py and getContract.py
@@ -20,7 +18,7 @@ def get_contract(config, contrJson, contrTxJson=None, miner=None):
     with open(contrTxJson) as f:
         TxJson = json.load(f)
 
-    w3 = util.getProvider(config, miner)
+    w3 = utils.getProvider(config, miner)
 
     # get Contract by contract_name, contract_address, and abi
     contract_name = [*contract_json][0]
@@ -46,7 +44,7 @@ if __name__ == "__main__":
     contract = get_contract(args.config, args.contrjson, args.contrtxjson, args.miner)
 
     
-    w3 = util.getProvider(args.config, args.miner)
+    w3 = utils.getProvider(args.config, args.miner)
     # test call contract
     # print(contract.functions.reset_ipfs_urls().transact({'from': w3.eth.accounts[0]}).hex())
-    print(contract.functions.reset_ipfs_urls().call())
+    # print(contract.functions.reset_ipfs_urls().call())

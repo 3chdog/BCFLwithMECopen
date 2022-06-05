@@ -1,6 +1,6 @@
 #!/bin/bash
 read CONFPATH < configPath.txt
-CONFIG="IPFS_mainDockers.conf"
+CONFIG="IPFS_InfraDockers.conf"
 INPUTS=""
 NUM=0
 while read line;
@@ -20,7 +20,7 @@ sudo chmod u=rw $PeersConf
 IDX=4
 CONTAINERNAME=${INPUTS[IDX]}
 SWARMPortDocker=${INPUTS[IDX+2]}
-echo -e "\n\nIPFS main docker:[${CONTAINERNAME}] to configure IPFS peer."
+echo -e "\n\nIPFS Infrastructure docker:[${CONTAINERNAME}] to configure IPFS peer."
 sudo docker exec $CONTAINERNAME bash -c 'rm -r /root/.ipfs/PeerID'
 sudo docker exec $CONTAINERNAME bash -c 'while read line; do input=($line); \
 if [ "${input[0]}" = "\"PeerID\":" ]; then PeerID=${input[1]:1:52}; break; fi; \
@@ -36,7 +36,7 @@ echo "ipfs bootstrap add /ip4/${HostIP}/tcp/${SWARMPortDocker}/ipfs/${input}" >>
 IDX=8
 CONTAINERNAME=${INPUTS[IDX]}
 SWARMPortDocker=${INPUTS[IDX+2]}
-echo -e "\n\nIPFS main docker:[${CONTAINERNAME}] to configure IPFS peer."
+echo -e "\n\nIPFS Infrastructure docker:[${CONTAINERNAME}] to configure IPFS peer."
 sudo docker exec $CONTAINERNAME bash -c 'rm -r /root/.ipfs/PeerID'
 sudo docker exec $CONTAINERNAME bash -c 'while read line; do input=($line); \
 if [ "${input[0]}" = "\"PeerID\":" ]; then PeerID=${input[1]:1:52}; break; fi; \
@@ -52,7 +52,7 @@ echo "ipfs bootstrap add /ip4/${HostIP}/tcp/${SWARMPortDocker}/ipfs/${input}" >>
 IDX=12
 CONTAINERNAME=${INPUTS[IDX]}
 SWARMPortDocker=${INPUTS[IDX+2]}
-echo -e "\n\nIPFS main docker:[${CONTAINERNAME}] to configure IPFS peer."
+echo -e "\n\nIPFS Infrastructure docker:[${CONTAINERNAME}] to configure IPFS peer."
 sudo docker exec $CONTAINERNAME bash -c 'rm -r /root/.ipfs/PeerID'
 sudo docker exec $CONTAINERNAME bash -c 'while read line; do input=($line); \
 if [ "${input[0]}" = "\"PeerID\":" ]; then PeerID=${input[1]:1:52}; break; fi; \

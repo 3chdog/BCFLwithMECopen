@@ -1,6 +1,6 @@
 #!/bin/bash
 read CONFPATH < configPath.txt
-CONFIG="IPFS_mainDockers.conf"
+CONFIG="IPFS_InfraDockers.conf"
 INPUTS=""
 NUM=0
 while read line;
@@ -55,3 +55,15 @@ echo "Start ipfs daemon..."
 echo "All ipfs peers:"
 sudo docker exec -d $CONTAINERNAME /bin/sh -c "ipfs daemon&"
 sudo docker exec $CONTAINERNAME ipfs swarm peers
+
+
+# add a test file on IPFS
+echo -e "\n\nAdd a welcome file to our private IPFS..."
+# docker1
+IDX=4
+CONTAINERNAME=${INPUTS[IDX]}
+sudo docker exec $CONTAINERNAME bash -c 'echo "Welcome to use IPFS of Fedeth!!!" >> /root/IPFS_welcome.txt'
+sudo docker exec $CONTAINERNAME bash -c 'HASH=$(ipfs add /root/IPFS_welcome.txt) && \
+HASH=($HASH) && HASH=${HASH[1]} && echo $HASH\
+echo $HASH >> /root/IPFS_welcome.txt'
+sudo docker cp $CONTAINERNAME:/root/IPFS_welcome.txt "${CONFPATH}/IPFS_welcome.txt"

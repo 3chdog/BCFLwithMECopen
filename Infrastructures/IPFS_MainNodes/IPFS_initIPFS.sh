@@ -1,6 +1,6 @@
 #!/bin/bash
 read CONFPATH < configPath.txt
-CONFIG="IPFS_mainDockers.conf"
+CONFIG="IPFS_InfraDockers.conf"
 INPUTS=""
 NUM=0
 while read line;
@@ -38,3 +38,4 @@ sudo docker exec $CONTAINERNAME ipfs bootstrap rm --all
 CONTAINERNAME=${INPUTS[4]}
 sudo docker exec $CONTAINERNAME bash -c '/golang/bin/ipfs-swarm-key-gen > ~/.ipfs/swarm.key'
 sudo docker cp $CONTAINERNAME:/root/.ipfs/swarm.key swarm.key
+cp swarm.key "${CONFPATH}/swarm.key"

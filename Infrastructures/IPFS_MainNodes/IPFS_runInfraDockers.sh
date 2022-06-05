@@ -1,6 +1,6 @@
 #!/bin/bash
 read CONFPATH < configPath.txt
-CONFIG="IPFS_mainDockers.conf"
+CONFIG="IPFS_InfraDockers.conf"
 IMAGE="bcflimage"
 INPUTS=""
 while read line;

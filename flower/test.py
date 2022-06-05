@@ -1,23 +1,17 @@
 import argparse
-try: 
-    import getContract
-    import util
-except:
-    from . import getContract
-    from . import util
 import time
+
+from contractAPI import getContract
+from contractAPI import utils
 
 sleep = 30
 
 def host(config, contrJson, contrTxJson=None, miner=None):
     contract = getContract.get_contract(config, contrJson, contrTxJson=None, miner=None)
 
-    w3 = util.getProvider(config, miner)
+    w3 = utils.getProvider(config, miner)
     w3.geth.miner.start(2)
     
-    # contract.functions.start_next_round(callEvent=True).transact({'from': w3.eth.accounts[0]})
-    # contract.functions.stop_training(callEvent=True).transact({'from': w3.eth.accounts[0]})
-    # contract.functions.set_global_model().transact({'from': w3.eth.accounts[0]})
     while(True):
         time.sleep(2)
         print("========")

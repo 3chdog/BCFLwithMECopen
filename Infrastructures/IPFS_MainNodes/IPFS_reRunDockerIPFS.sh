@@ -1,6 +1,6 @@
 #!/bin/bash
 read CONFPATH < configPath.txt
-CONFIG="IPFS_mainDockers.conf"
+CONFIG="IPFS_InfraDockers.conf"
 INPUTS=""
 while read line;
 do input=($line); INPUTS="${INPUTS} ${input[1]}";done < "${CONFPATH}/${CONFIG}"

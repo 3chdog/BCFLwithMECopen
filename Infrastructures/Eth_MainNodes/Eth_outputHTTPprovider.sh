@@ -1,7 +1,7 @@
 #!/bin/bash
 # get ports
 read CONFPATH < configPath.txt
-CONFIG="Eth_docker.conf"
+CONFIG="Eth_InfraDockers.conf"
 INPUTS=""
 while read line;
 do input=($line); INPUTS="${INPUTS} ${input[1]}";done < "${CONFPATH}/${CONFIG}"
@@ -9,7 +9,7 @@ INPUTS=($INPUTS)
 CONTAINERNAME=${INPUTS[0]}
 
 # get IP address
-CONFIG_IP="IPFS_mainDockers.conf"
+CONFIG_IP="IPFS_InfraDockers.conf"
 read CONFIPPATH < "${CONFPATH}/${CONFIG_IP}"
 CONFIPPATH=($CONFIPPATH)
 IP=${CONFIPPATH[1]}
@@ -83,5 +83,5 @@ echo -e "\
 
 
 
-echo "EthMiner_config.json finished!"
-echo "Please check config/EthMiner_config.json"
+echo "\"eth_config.json\" finished!"
+echo "Please check config/eth_config.json."

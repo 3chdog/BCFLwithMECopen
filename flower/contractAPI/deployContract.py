@@ -4,10 +4,8 @@ from solcx import compile_source
 import os
 import json
 import argparse
-try:
-    import util
-except:
-    from . import util
+
+from . import utils
 
 # python3 deployCtc.py --sol <.sol>
 
@@ -49,7 +47,7 @@ def deploy_contract_with_sol(config, sol, miner=None):
 
     # w3這個HTTPProvider物件提供了區塊鍊網路的基礎設施，如同Ganache與infura提供給我們的基礎設施
     # 「http://」是我起的node，連上這個node就能和區塊鍊網路溝通
-    w3 = util.getProvider(config, miner)
+    w3 = utils.getProvider(config, miner)
     w3.eth.default_account = w3.eth.accounts[0]
     
     ## Compile Contract

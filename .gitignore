@@ -1,0 +1,39 @@
+# nodes info of private ethereum on lab
+eth_config.json
+EthMiner_config.json
+
+# ---> Python
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# truffle info generated after deployment
+node_modules/
+package-lock.json
+package.json
+
+# no configure
+*.conf
+!Eth_InfraDockers_sample.conf
+!IPFS_InfraDockers_sample.conf
+!Trainer_docker_sample.conf
+PeerID*
+
+# our netID genesis
+mynet.json
+swarm.key
+
+# models
+tmp_aggregated_model
+tmp_get
+tmp_model
+tmp_sub_aggregated_model
+flower/models
+
+# logs
+aggregator.log
+flower.log

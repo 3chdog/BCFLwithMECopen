@@ -14,6 +14,7 @@ def ipfsGetFile(hashValue, fileName):
     """
     ipfsGet = subprocess.Popen(args=['ipfs get ' + hashValue + ' -o ' + fileName], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8')
     outs, errs = ipfsGet.communicate(timeout=10)
+    print("IPFS\t||  get strip:", outs.strip())
     if ipfsGet.poll() == 0:
         return outs.strip(), ipfsGet.poll()
     else:

@@ -18,6 +18,7 @@
 import concurrent.futures
 import timeit
 import time
+import logging
 from logging import DEBUG, INFO, WARNING
 from typing import Dict, List, Optional, Tuple, Union
 
@@ -40,9 +41,9 @@ from flwr.server.history import History
 from flwr.server.strategy import FedAvg, Strategy
 
 import ipfsAPI.ipfstools as ip
-import jsons
 import contractAPI.FLContract as flc
-import logging
+from contractAPI.utils import parameters_to_dict
+import json
 
 DEPRECATION_WARNING_EVALUATE = """
 DEPRECATION WARNING: Method
@@ -292,17 +293,16 @@ class Server:
             Tuple[Optional[Parameters], Dict[str, Scalar]],
             Optional[Weights],  # Deprecated
         ] = self.strategy.aggregate_fit(rnd, results, failures)
-        
+
         # TODO:
-        f = open("flower/tmp_model", "w")
-        f.truncate(0)
-        jsonstring = jsons.dumps(aggregated_result[0])
-        f.write(jsonstring)
-        f.close()
+        with open("flower/tmp_model", "w") as f:
+            json.dump(parameters_to_dict(aggregated_result[0]), f, indent=4)
         strip, _ = ip.ipfsAddFile("flower/tmp_model")
         log(INFO, "strip=" + str(strip))
         flcc = flc.FL_Contract()
         flcc.append_ipfs_url(strip)
+
+        
 
         metrics_aggregated: Dict[str, Scalar] = {}
         if aggregated_result is None:

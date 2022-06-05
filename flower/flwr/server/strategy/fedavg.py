@@ -20,7 +20,6 @@ Paper: https://arxiv.org/abs/1602.05629
 
 from logging import WARNING
 from typing import Callable, Dict, List, Optional, Tuple
-import jsons
 
 from flwr.common import (
     EvaluateIns,
@@ -42,6 +41,7 @@ from .strategy import Strategy
 
 import ipfsAPI.ipfstools as ip
 import contractAPI.FLContract as flc
+from contractAPI.utils import readJson_to_parameters
 
 DEPRECATION_WARNING = """
 DEPRECATION WARNING: deprecated `eval_fn` return format
@@ -169,16 +169,18 @@ class FedAvg(Strategy):
         if isinstance(initial_parameters, list):
             log(WARNING, DEPRECATION_WARNING_INITIAL_PARAMETERS)
             initial_parameters = weights_to_parameters(weights=initial_parameters)
+            return initial_parameters
+
 
         # TODO: fetch global parameters from ipfs
         flcc = flc.FL_Contract()
-        print("==========")
-        strip, _= ip.ipfsGetFile(flcc.get_global_model(), "flower/tmp_get")
-        f = open("flower/tmp_get")
-        lines = f.readlines()
-        initial_parameters = jsons.loads(lines[0], Parameters)
-        
-        #print(initial_parameters)
+        print("===============")
+        print("Now get Global model:", flcc.get_global_model())
+        ip.ipfsGetFile(flcc.get_global_model(), "flower/tmp_get")
+        initial_parameters = readJson_to_parameters("flower/tmp_get")
+        print("init params get!", type((initial_parameters.tensors)[0]))
+
+
         
         return initial_parameters
 
