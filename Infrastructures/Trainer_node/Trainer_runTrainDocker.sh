@@ -35,11 +35,8 @@ $HTTPportHost:$HTTPportDocker -p $SWARMPortHost:$SWARMPortDocker -p $WEBPortHost
 
 # git clone in Host computer and cp into docker
 REPONAME="BCFLwithMECopen"
-sudo docker exec $CONTAINERNAME bash -c 'cd && git clone https://github.com/3chdog/BCFLwithMECopen'
-
-echo "Please copy \"config\" into this docker."
+echo "Please copy \"${REPONAME}\" into this trainer docker."
 echo "Try automative copying..."
-echo "${CONFPATH}/."
-sudo docker cp "${CONFPATH}/." "${CONTAINERNAME}:/root/${REPONAME}/config/"
+cd ../../.. && sudo docker cp $REPONAME "${CONTAINERNAME}:/root/${REPONAME}"
 sudo docker exec $CONTAINERNAME ls /root/
 sudo docker exec $CONTAINERNAME ls /root/${REPONAME}/config

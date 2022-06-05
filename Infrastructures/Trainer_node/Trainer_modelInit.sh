@@ -13,4 +13,4 @@ sudo docker exec $CONTAINERNAME bash -c 'cd /root/BCFLwithMECopen && \
 HASH=$(python3 flower/get_init_parameters.py) && \
 HASH=($HASH) && HASH=${HASH[-1]} && \
 echo "init model uploaded to IPFS: ${HASH}" && \
-sed -i "s/QmTtvUpZcChmbKf2L2gexxxBbNwAvjhLBRHj4MVY1rqgHy/${HASH}/1" /root/BCFHwithMECopen/contracts/FL.sol'
+sed -i "s/QmTtvUpZcChmbKf2L2gexxxBbNwAvjhLBRHj4MVY1rqgHy/${HASH}/1" /root/BCFLwithMECopen/contracts/FL.sol'
